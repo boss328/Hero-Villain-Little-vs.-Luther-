@@ -1,34 +1,33 @@
-/*
-Theme Name: Pekko WP
-Theme URI: https://demo.cocobasic.com/pekko-wp/
-Description: Elementor Minimal Dark Photography and Blog WordPress Theme. Online documentation you can find here - https://demo.cocobasic.com/documentation/MANUAL-PekkoWP.pdf
-Author: CocoBasic
-Author URI:  https://www.cocobasic.com
-License: GNU General Public License v2.0
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Version: 1.0
-Tags: grid-layout, four-columns, custom-colors, featured-images, threaded-comments, translation-ready, theme-options
-Text Domain: pekko-wp
-*/
-
 
 /*------------------------------------------------------------------
 [Table of contents]
-1. Global CSS       
-2. Menu CSS    
-3. Blog Page CSS
-4. Single Post CSS
-5. Comments CSS
-6. Contact Page CSS
-7. Archive CSS / Search CSS / 404 Page CSS / Attachment Page
-8. Footer CSS
-9. Footer Widgets CSS
-9. Responsive CSS
+1. 3rd Part CSS Libraries
+2. Global CSS
+3. Menu CSS
+4. Home CSS
+5. About CSS
+6. Image Slider CSS
+7. Blog Page CSS
+8. Single Post CSS
+9. Contact Page CSS
+10. Footer CSS
+11. Responsive CSS
 -------------------------------------------------------------------*/
 
 
 /* ===================================
-    1. Global CSS
+    1. 3rd Part CSS Libraries
+====================================== */
+
+@import url("css/clear.css");
+@import url("css/sm-clean.css");
+@import url("css/swiper.min.css");
+@import url("css/prettyPhoto.css");
+@import url("css/common.css");
+
+
+/* ===================================
+    2. Global CSS
 ====================================== */
 
 body.wait-preloader {
@@ -43,6 +42,12 @@ body {
     color: #ffffff;
     background-color: #000;
     overflow-x: hidden;
+}
+
+body.page-background {
+    background-image: url("images/lines.png");
+    background-repeat: no-repeat;    
+    background-position: bottom right;
 }
 
 body a {
@@ -65,8 +70,11 @@ body.open.done {
     overflow-y:scroll;
 }
 
-#content img,
-footer img {
+.site-wrapper {
+    overflow: hidden;
+}
+
+.site-wrapper img {
     max-width: 100%;
     max-height: 100%;
     width: auto;
@@ -85,7 +93,8 @@ footer img {
 }
 
 .doc-loader img {
-    width: 100px;    
+    width: 100px;
+    height: 100px;
     position: absolute;
     top: 50%;    
     left: 50%;
@@ -95,7 +104,8 @@ footer img {
 .header-logo img {
     max-width: none;
     max-height: none;
-    width: 135px;    
+    width: 135px;
+    height: 135px;
 }
 
 .site-content {
@@ -122,7 +132,7 @@ h1.entry-title.page-title {
 
 .animate {
     opacity: 0;
-    transition: .5s transform ease-in, .5s opacity ease-in;
+    transition: .5s ease-in;
     -ms-transform: translate(0px,70px);
     -webkit-transform: translate(0px,70px);
     transform: translate(0px,70px); 
@@ -142,41 +152,63 @@ h1.entry-title.page-title {
 
 .content-960 {
     width: 960px;
-    max-width: 100%;
+    max-width: 95%;
 }
 
-.content-750 {
-    width: 750px;
-    max-width: 100%;
+.medium-text {
+    font-size: 22px;
+    line-height: 40px;
+    color: #666;
 }
 
-.content-570 {
-    width: 570px;
-    max-width: 100%;
+.info-code {
+    margin-bottom: 30px;
 }
 
-nav.navigation.pagination {
-    margin: 100px 0;
+.info-code-title {
+    font-size: 10px;
+    letter-spacing: 5px;
+    margin-bottom: 0;
+    line-height: 100%;
+    font-weight: 500;
+    color: #666;
 }
 
-.page-numbers.current {
-    color: #ffffff !important;
-    padding: 1px 4px;
-    background-color: #333333;
+.info-code-content, 
+.info-code-content a {
+    font-size: 15px;
 }
 
-.page-numbers {
-    margin: 0 5px;
-    font-size: 16px;
-    min-width: 30px;
-    min-height: 30px;
+a.socail-text {
+    margin-right: 15px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+a.button {
+    background-color: #000;
+    padding: 8px 0px 8px 11px;
     display: inline-block;
+    font-size: 11px;
+    min-width: 170px;
+    letter-spacing: 8px;
+    transition: opacity .3s ease;
     text-align: center;
+    border: 1px solid;
+}
+
+a.button:hover {
+    opacity: 0.8; 
+}
+
+.page-featured-image {
+    margin-bottom: 80px;
 }
 
 
 /* ===================================
-    2. Menu CSS
+    3. Menu CSS
 ====================================== */
 
 .menu-holder-front {
@@ -202,262 +234,6 @@ nav.navigation.pagination {
     display: inline-block
 }
 
-#header-main-menu {
-    width: 40%;
-    display: inline-block;
-    vertical-align: top;    
-}
-
-#header-main-menu.no-right-text {
-    width: 100%;
-}
-
-span.menu-num {
-    position: absolute;
-    top: 5px;
-    color: #666;
-    left: -25px;
-}
-
-.main-menu.sm-clean {
-    background-color: transparent;
-    display: inline-block;
-    max-width: 90%;
-}
-
-.main-menu > li {
-    margin-bottom: 15px;
-}
-
-.sm ul {
-    padding-left: 0;
-}
-
-.sm-clean a {
-    position: relative;
-}
-
-.sm-clean a, 
-.sm-clean a:hover, 
-.sm-clean a:focus, 
-.sm-clean a:active {
-    font-family: 'Unna', serif;
-    color: #fff;
-    padding: 5px 0;
-    font-size: 42px;
-    line-height: 110%;
-    font-weight: 400;  
-}
-
-.sm-clean > li > a:after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 15px;
-    background-color: #333333;
-    transition: width .3s;
-    position: absolute;
-    left: -5%;
-    bottom: 8px;
-    z-index: -1;
-}
-
-.sm-clean a.current:after, 
-.sm-clean a:hover:after, 
-.sm-clean ul a:hover:after {
-    width: 110%;
-}
-
-.sm-clean a.current {
-    color: #ff0000;    
-}
-
-.sm-clean a span.sub-arrow {
-    color: #666666;
-    font-size: 45px !important;
-    right: -45px;
-    left: auto;
-}
-
-.sm-clean a span.sub-arrow:before {
-    display: block;
-    content: '\203A';
-    transform: rotate(90deg);
-}
-
-.sm-clean a.highlighted span.sub-arrow:before {
-    display: block;
-    content: '\203A';
-    transform: rotate(270deg) translateY(-3px);
-    margin-left: -4px;
-}
-
-.sm-clean .sub-menu li a,
-.sm-clean .children li a {
-    color: #bbbbbb;
-    text-transform: uppercase;
-    font-size: 15px;
-    line-height: 10px;
-    padding: 10px 0;
-    letter-spacing: 0.5px;
-    font-weight: 400;
-}
-
-.sm-clean .sub-menu li a:hover, 
-.sm-clean .sub-menu li a.current, 
-.sm-clean .children li a:hover, 
-.sm-clean .children li a.current {
-    color: #fff;
-}
-
-.menu-background-image {
-    position: absolute;
-    z-index: -1;
-    top: 38px;
-}
-
-.menu-holder-back {
-    width: 100%;
-    position: fixed;
-    background-color: #000;        
-    background-repeat: no-repeat;
-    background-position: bottom right;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    z-index: 998;
-    top: 0;
-    left: 0;
-    padding-top: 0;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s linear 0.5s, opacity 0.7s ease;
-}
-
-.menu-holder-back.open {
-    visibility: visible;
-    opacity: 1;
-    transition-delay: 0s;    
-
-}
-
-@media screen and (min-width: 768px) {
-
-    .menu-holder-back > * {
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-}
-
-.menu-wrapper-back {
-    width: 1110px;
-    max-width: 95%;
-    margin: 70px auto 0;
-    padding-left: 165px;
-    opacity: 0;
-    transition: opacity 0.7s ease, margin-top 0.7s ease;
-}
-
-.open .menu-wrapper-back {
-    opacity: 1;
-    margin-top: 0;
-    transition-delay: 0.3s;
-}
-
-#header-main-menu .search-form {
-    position: relative;
-    padding-top: 20px;
-    margin-top: -20px;
-}
-
-#header-main-menu .search-field {
-    font-family: 'Unna', serif;
-    font-size: 42px;
-    line-height: 110%;
-    font-weight: 400;
-    max-width: 250px;
-    width: 90%;
-    color: #fff;
-    padding: 0;
-    margin-top: -10px;
-    background-color: transparent;
-    border: none;
-    border-bottom: 3px solid transparent;
-    text-align: left;
-    transition: border 0.4s ease;
-    -webkit-appearance: none;
-}
-
-#header-main-menu .search-field::-ms-clear {  
-    display: none; 
-    width: 0; 
-    height: 0; 
-}
-
-#header-main-menu .search-field::-ms-reveal {  
-    display: none; 
-    width: 0; 
-    height: 0; 
-}
-
-#header-main-menu .search-field::-webkit-search-decoration,
-#header-main-menu .search-field::-webkit-search-cancel-button,
-#header-main-menu .search-field::-webkit-search-results-button,
-#header-main-menu .search-field::-webkit-search-results-decoration { 
-    display: none; 
-}
-
-#header-main-menu .search-field:focus {
-    border-color: #fff;
-}
-
-#header-main-menu .search-field::-webkit-input-placeholder {
-    font-family: 'Unna', serif;     
-    font-size: 42px;
-    line-height: 110%;
-    font-weight: 400;
-    color: #ffffff;
-    padding: 5px 0;    
-    opacity: 1;
-    text-align: left;
-}
-
-#header-main-menu .search-field:-ms-input-placeholder {
-    font-family: 'Unna', serif;     
-    font-size: 42px;
-    line-height: 110%;
-    font-weight: 400;
-    color: #ffffff;
-    padding: 5px 0;    
-    opacity: 1;
-    text-align: left;
-}
-
-#header-main-menu .search-field::placeholder {
-    font-family: 'Unna', serif;     
-    font-size: 42px;
-    line-height: 110%;
-    font-weight: 400;
-    color: #ffffff;
-    padding: 5px 0;    
-    opacity: 1;
-    text-align: left;
-}
-
-.logo-holder {
-    line-height: 0;
-    font-size: 0;
-}
-
-.logo-holder img {
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
-    height: auto;
-}
-
 .toggle-holder {
     position: relative;
     width: 70px;
@@ -476,7 +252,7 @@ span.menu-num {
     position: absolute;
     left: 0;
     bottom: 0;
-    background-color: #ff0000;
+    background-color: red;
     z-index: -1;
     transition: .3s;
 }
@@ -572,10 +348,415 @@ span.menu-num {
     opacity: 0;
 }
 
+#header-main-menu {
+    width: 40%;
+    display: inline-block;
+    vertical-align: top;    
+}
+
+span.menu-num {
+    position: absolute;
+    top: 5px;
+    color: #666;
+    left: -25px;
+}
+
+.main-menu.sm-clean {
+    background-color: transparent;
+    display: inline-block;
+    max-width: 90%;
+}
+
+.main-menu > li {
+    margin-bottom: 15px;
+}
+
+.sm ul {
+    padding-left: 0;
+}
+
+.sm-clean a {
+    position: relative;
+}
+
+.sm-clean a, 
+.sm-clean a:hover, 
+.sm-clean a:focus, 
+.sm-clean a:active {
+    font-family: 'Unna', serif;
+    color: #fff;
+    padding: 5px 0;
+    font-size: 42px;
+    line-height: 110%;
+    font-weight: 400;    
+}
+
+.sm-clean > li > a:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 15px;
+    background-color: #333333;
+    transition: width .3s;
+    position: absolute;
+    left: -5%;
+    bottom: 8px;
+    z-index: -1;
+}
+
+.sm-clean a.current:after, 
+.sm-clean a:hover:after, 
+.sm-clean ul a:hover:after {
+    width: 110%;
+}
+
+.sm-clean a.current {
+    color: #ff0000;    
+}
+
+.sm-clean a span.sub-arrow {
+    color: #acacac;
+    font-size: 45px !important;
+    right: -45px;
+    left: auto;
+}
+
+.sm-clean a span.sub-arrow:before {
+    display: block;
+    content: '\203A';
+    transform: rotate(90deg);
+}
+
+.sm-clean a.highlighted span.sub-arrow:before {
+    display: block;
+    content: '\203A';
+    transform: rotate(270deg) translateY(-3px);
+    margin-left: -4px;
+}
+
+.sm-clean .sub-menu li a,
+.sm-clean .children li a {
+    color: #bbbbbb;
+    text-transform: uppercase;
+    font-size: 15px;
+    line-height: 10px;
+    padding: 10px 0;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+}
+
+.sm-clean .sub-menu li a:hover, 
+.sm-clean .sub-menu li a.current, 
+.sm-clean .children li a:hover, 
+.sm-clean .children li a.current {
+    color: #fff;
+}
+
+.menu-holder-back {
+    width: 100%;
+    position: fixed;
+    background-color: #000;    
+    background-image: url("images/lines.png");  
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 998;
+    top: 0;
+    left: 0;
+    padding-top: 135px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.5s, opacity 0.7s ease;
+}
+
+.menu-holder-back.open {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;    
+
+}
+
+.menu-holder-back {
+    padding-top: 0;
+    height: 100%;
+}
+
+@media screen and (min-width: 768px) {
+
+    .menu-holder-back > * {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+}
+
+.menu-wrapper-back {
+    width: 1110px;
+    max-width: 95%;
+    margin: 70px auto 0;
+    padding-left: 165px;
+    opacity: 0;
+    transition: opacity 0.7s ease, margin-top 0.7s ease;
+}
+
+.open .menu-wrapper-back {
+    opacity: 1;
+    margin-top: 0;
+    transition-delay: 0.3s;
+}
+
+.menu-text {    
+    font-size: 16px;
+    line-height: 170%;    
+}
+
+.menu-right-text .menu-text a:hover {
+    color: #acacac;
+}
+
+p.menu-text-title {
+    font-size: 10px;
+    line-height: 110%;
+    letter-spacing: 1px;
+    padding-bottom: 6px;
+    margin-bottom: 0;
+}
+
+.menu-right-text {
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
+}
+
+a.social-text {    
+    margin-right: 35px;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.social-holder a:last-of-type {
+    margin-right: 0;
+}
 
 
 /* ===================================
-    3. Blog Page CSS
+    4. Home CSS
+====================================== */
+
+#portfolio-wrapper {
+    width: 100%;
+    max-width: 930px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#portfolio-grid {
+    transition: all .5s ease;
+    opacity: 1;
+    transform: translateY(0px);
+    padding: 0;
+    list-style: none;    
+}
+
+.grid {    
+    width: 100%;
+    margin: 0 auto;    
+    overflow: hidden;
+    position: relative;
+    max-width: 100%;
+}
+
+.grid-sizer {
+    width: 50%;
+}
+
+.grid-item {
+    float: left;
+    font-size: 0;
+    line-height: 0;
+    width: 100%;
+    overflow: hidden;
+    width: calc(50% - 30px);
+    border: 15px solid transparent;
+}
+
+.grid-item.p_one_half {
+    width: 50%;
+}
+
+.grid-item.p_one {
+    width: calc(100% - 30px);
+}
+
+.grid-item img {
+    width: 100% !important;
+    height: auto;
+    display: block;    
+}
+
+.grid-item .entry-holder {
+    text-align: center;
+    background-color: #fff;
+    padding: 50px 20px;
+}
+
+.grid-item a.item-link:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.portfolio-text-holder {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: inline-block;
+    z-index: 1;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: all .3s ease;
+    text-align: center;
+}
+
+.portfolio-title {
+    font-size: 14px;
+    line-height: 120%;
+    font-weight: 500;
+    letter-spacing: 3px;
+    margin-bottom: 0;    
+    border: 1px solid;
+    padding: 12px 25px;
+}
+
+.grid-item a.item-link:hover:after, 
+.grid-item a.item-link:hover .portfolio-text-holder {
+    opacity: 1;
+}
+
+
+/* ===================================
+    5. About CSS
+====================================== */
+
+ul.timeline-holder {
+    margin: 0;
+    padding: 0 0 0 40px;
+}
+
+li.timeline-event {
+    margin: 0 0 42px 60px;
+    position: relative;
+    padding-top: 5px;
+    padding-left: 10px;
+    list-style: none;
+    color: #808080;
+    transition: .3s;
+}
+
+li.timeline-event:hover {
+    color: #fff;
+}
+
+li.timeline-event:before {
+    content: "";
+    width: 2px;
+    height: calc(100% - 20px);
+    position: absolute;
+    background-color: #333;
+    left: -30px;
+    top: 51px;
+}
+
+li.timeline-event:last-child:before {
+    display: none;
+}
+
+li.timeline-event:last-child {
+    margin-bottom: 0;
+}
+
+li.timeline-event:hover span.timeline-circle:before {
+    background-color: #333;
+}
+
+span.timeline-circle {
+    position: absolute;
+    top: 0;
+    left: -30px;
+}
+
+span.timeline-circle:before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 90%;
+    border: 2px solid #333;
+    position: absolute;
+    left: -16px;
+    top: 3px;
+    z-index: 1;
+    transition: .3s;
+}
+
+.timeline-event-date {
+    position: absolute;
+    left: -100px;
+    top: 2px;
+    color: #fff;
+    transition: .3s;
+}
+
+li.timeline-event:hover .timeline-event-date {
+    transform: translateX(-10px);
+}
+
+.timeline-event-content {
+    line-height: 160%;
+    text-align: left;
+}
+
+
+/* ===================================
+    6. Image Slider CSS
+====================================== */
+
+.simple-image-slider-pagination.swiper-pagination {
+    left: 50%;
+    transform: translateX(-50%);    
+    position: relative;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+
+.simple-image-slider-pagination .swiper-pagination-bullet {
+    width: 15px;
+    height: 15px;
+    opacity: 1;
+    vertical-align: middle;
+    margin: 0 5px;
+    border: 3px solid white;
+}
+
+.simple-image-slider-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+    border-color: #666;
+    background-color: #666;
+}
+
+
+/* ===================================
+    7. Blog Page CSS
 ====================================== */
 
 .blog-holder > article {
@@ -592,23 +773,7 @@ span.menu-num {
     text-align: center;
 }
 
-.blog-item-holder h2.entry-title {
-    font-family: 'Unna', serif;
-    font-weight: 700;
-    font-size: 47px;
-    line-height: 120%;
-    padding: 0;
-    word-break: break-word;
-    margin: 0 auto 30px;
-    max-width: 550px;
-    position: relative;
-}
-
-.blog-holder .post-thumbnail img {
-    margin: 0 auto;
-}
-
-.blog-item-holder.has-post-thumbnail img {    
+.blog-item-holder img {    
     margin-bottom: -50px;
 }
 
@@ -624,21 +789,24 @@ span.menu-num {
     color: #000;
 }
 
-.blog-item-holder .entry-info a {
-    color: #000;
+.blog-item-holder h2.entry-title {
+    font-family: 'Unna', serif;
+    font-weight: 700;
+    font-size: 47px;
+    line-height: 120%;
+    padding: 0;
+    word-break: break-word;
+    margin: 0 auto -95px;
+    max-width: 550px;
+    position: relative;
 }
 
-.blog-item-holder .entry-info a:hover {
-    color: #acacac;
-}
-
-.blog-item-holder .entry-info li {
+.entry-info li {
     font-size: 15px;
     line-height: 100%;
-    width: 120px;
 }
 
-.blog-item-holder .entry-info li .entry-info-text {
+.entry-info li .entry-info-text {
     font-weight: 500;
     font-size: 10px;
     color: #666666;
@@ -646,78 +814,9 @@ span.menu-num {
     margin-bottom: 7px;
 }
 
-.blog-item-holder ul.cat-links {
-    padding: 0;
-    list-style: none;
-}
-
-.blog-item-holder ul.cat-links > li {
-    margin-bottom: 5px;
-    display: inline-block;
-    width: auto;
-}
-
-.blog-item-holder ul.cat-links > li:last-child {
-    margin-bottom: 0;
-}
-
-.blog-item-holder ul.cat-links > li:after {
-    content: ",";
-    margin-right: 5px;
-}
-
-.blog-item-holder ul.cat-links > li:last-child:after {
-    display: none;
-}
-
-.more-posts-index-holder {
-    text-align: center;
-    min-height: 1px;
-    max-width: 600px;
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.more-posts, 
-.no-more-posts, 
-.more-posts-loading {
-    padding: 8px 0px;
-    display: inline-block;
-    font-size: 11px;
-    line-height: 24px;
-    letter-spacing: 8px;
-    transition: opacity .3s ease;
-}
-
-.more-posts:hover, 
-.no-more-posts:hover, 
-.more-posts-loading:hover {
-    opacity: 0.8 !important;
-}
-
-.more-posts-loading {
-    opacity: 0.8;
-}
-
-.more-posts {
-    cursor: pointer;   
-}
-
-.more-posts-loading, 
-.no-more-posts {
-    display: none;
-    cursor: auto;   
-}
-
-.more-posts-index-holder.scroll .more-posts, 
-.more-posts-index-holder.scroll .no-more-posts {
-    display: none !important;    
-}
-
 
 /* ===================================
-    4. Single Post CSS
+    8. Single Post CSS
 ====================================== */
 
 .single-post .post-info-wrapper {
@@ -767,7 +866,7 @@ span.menu-num {
     word-wrap: break-word;
     padding: 0;
     margin: 0 auto 60px;
-    width: 780px;
+    width: 680px;
     max-width: 100%;
     text-align: center;
 }
@@ -795,10 +894,6 @@ span.menu-num {
     display: none;
 }
 
-.single-post .attachment-post-thumbnail {
-    margin: 0 auto;
-}
-
 .img-caption {
     display: table;
     padding: 12px 60px;
@@ -822,7 +917,7 @@ span.menu-num {
     display: inline-block;
 }
 
-body .tags-holder a  {
+.tags-holder a  {
     color: #808080;
     border: 3px solid #808080;
     text-decoration: none;
@@ -849,380 +944,18 @@ body .tags-holder a  {
     border-color: #fff;
 }
 
-.wp-link-pages {
-    clear: both;
-}
-
-.wp-link-pages > * { 
-    margin: 0 5px;
-    font-size: 16px;
-    min-width: 30px;
-    min-height: 30px;
-    display: inline-block;
-    text-align: center;
-}
-
-.wp-link-pages > span {
-    color: #ffffff !important;
-    padding: 1px 4px;
-    background-color: #333333;
-}
-
-.single .nav-links {    
-    margin-top: 70px;
-    margin-bottom: 70px;    
-    position: relative;
-}
-
-.single .nav-links:before {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 2px;
-    height: 100%;
-    background-color: #fff;
-    left: 50%;
-    margin-left: -2px;
-}
-
-.single .nav-previous {
-    display: inline-block;
-    text-align: right;
-    float: left;
-    width: 44%;
-}
-
-.single .nav-next {
-    display: inline-block;
-    float: right;
-    width: 44%;
-    text-align: left;
-}
-
-.nav-links p {        
-    font-size: 11px;
-}
-
-.nav-previous a, .nav-next a {
-    font-family: "Unna", serif;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 35px;
-    word-break: break-word;
-}
-
-.single-post .nav-previous a {
-    float: right;
-}
-
-.single-post .nav-next a {
-    float: left;  
-}
-
 
 /* ===================================
-    5. Comments CSS
+    9. Contact Page CSS
 ====================================== */
 
-#comments-wrapper {
-    padding-top: 40px;    
-}
-
-.comment-form-holder a {
-    color: #ffffff;
-}
-
-.comment-form-holder a:hover {
-    color: #acacac;
-}
-
-ol.comments-list-holder {
-    margin: 0;
-}
-
-.comments-holder ol.comments-list-holder, 
-.comments-holder ul.children {
-    list-style-type: none;
-    padding-left: 0;
-    margin-left: 0;
-}
-
-.comments-holder ul.children {
-    position: relative;
-}
-
-.comments-holder ul.children:before {
-    content: "";
-    width: 2px;
-    height: 50px;
-    background-color: #dddddd;
-    position: absolute;
-    left: 34px;
-    top: 10px;
-    left: 3.75em;
-}
-
-.vcard img {
-    border-radius: 100px;
-}
-
-.comments-holder .comment-author-date-replay-holder {
-    margin-left: 110px;
-    padding-top: 8px;
-    padding-left: 0;
-}
-
-.comments-holder .pingback {
-    padding-bottom: 80px;
-}
-
-.comments-holder .pingback .comment-author-date-replay-holder, 
-.comments-holder .pingback .comment-text {
-    margin-left: 0;
-}
-
-ul.comment-author-date-replay-holder li {
-    display: inline-block;
-}
-
-ul.comment-author-date-replay-holder li.comment-author {
-    max-width: 90%;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.comment-date {
-    margin-left: 110px;
-    text-transform: uppercase;
+.my-info span {
     color: #808080;
-    font-size: 15px;
-    margin-top: -10px;
 }
 
-.pingback .comment-date {
-    margin-left: 0;
-    margin-top: 0;
-}
-
-.comment-reply {
-    float: right;
-}
-
-a.comment-reply-link {
-    text-decoration: none;
-    position: relative;
-}
-
-.comments-number {
-    font-size: 24px;
-    line-height: 25px;
-    color: #6f6f6f;
-    text-align: center;
-}
-
-.comment-content-holder {
-    margin-left: 50px;
-}
-
-.comment-content-holder {
-    width: 470px;
-}
-
-.comment-time-separator {
-    display: inline-block;
-    margin: 0 20px;
-}
-
-.comment-text {
-    clear: both;
-    display: block;
-    line-height: 200%;
-}
-
-.comment-text p {
-    display: inline;
-    font-size: 15px;
-    line-height: 35px;
-}
-
-.replay-at-author {
-    color: #808080;
-    margin-right: 8px;
-    font-weight: 700;
-    position: relative;
-    display: inline-block;
-    z-index: 0;
-    text-transform: uppercase;
-}
-
-#reply-title {   
-    font-size: 20px;
-    color: #fff;
-}
-
-#cancel-comment-reply-link {
-    font-size: 13px;
-    padding-left: 15px;
-}
-
-#cancel-comment-reply-link:before {
-    content: "-";
-    padding-right: 5px;
-}
-
-.comment-time {
-    display: inline-block;
-    font-size: 14px;
-}
-
-.comment {
-    padding-bottom: 80px;
-    list-style: none;
-    margin: 0;
-    padding-left: 0;
-}
-
-.children .comment {    
-    padding-top: 80px;
-    padding-bottom: 0;
-}
-
-.comment:last-child {
-    padding-bottom: 0;
-}
-
-.comments-list-holder .children > li {
-    padding-left: 1.75em;
-}
-
-.logged-in-as {
-    margin-bottom: 50px;
-}
-
-.comment-form-holder {
-    padding-top: 50px;
-    padding-bottom: 15px;
-}
-
-#commentform #email, 
-#commentform #author, 
-#commentform #comment {
-    font-family: 'Work Sans', sans-serif;
-    color: #fff;
-    border: 0;
-    border-bottom: 2px solid;
-    height: 28px;
-    font-size: 16px;
-    line-height: 24px;
-    width: 100%;
-    padding: 0;
-    margin-bottom: 40px;
-    background-color: transparent;
-}
-
-#commentform #email, 
-#commentform #author {
-    padding-bottom: 5px;
-}
-
-#commentform #email {
-    margin-bottom: 35px;
-}
-
-#commentform input[type=text]::-webkit-input-placeholder, 
-#commentform input[type=email]::-webkit-input-placeholder, 
-#commentform textarea::-webkit-input-placeholder {
-    font-family: 'Work Sans', sans-serif;
-    color: #fff;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 30px;    
-}
-
-#commentform input[type=text]:-ms-input-placeholder, 
-#commentform input[type=email]:-ms-input-placeholder, 
-#commentform textarea:-ms-input-placeholder {
-    font-family: 'Work Sans', sans-serif;
-    color: #fff;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 30px;
-}
-
-#commentform input[type=text]::placeholder, 
-#commentform input[type=email]::placeholder, 
-#commentform textarea::placeholder {
-    font-family: 'Work Sans', sans-serif;
-    color: #fff;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 30px;
-    opacity: 1;    
-}
-
-#commentform #comment {
-    height: 150px;
-}
-
-.form-submit {
-    position: relative;
-    font-size: 16px;
-    margin-bottom: 0;
-}
-
-.form-submit input[type=submit] {
-    font-family: 'Work Sans', sans-serif;
-    border: 2px solid #fff;
-    display: block;
-    color: #fff;
-    background-color: transparent;
-    text-align: center;
-    padding-bottom: 25px;
-    padding-top: 25px;
-    cursor: pointer;
-    font-size: 15px;
-    vertical-align: middle;
-    text-decoration: none;
-    transition: all 0.2s linear;
-    width: 100%;
-    font-weight: 700;
-}
-
-.form-submit input[type=submit]:hover {
-    background-color: #ffffff;
-    color: #000;
-}
-
-.comment-form-cookies-consent {
-    color: #fff;
-    font-size: 12px;
-    line-height: 18px;
-    margin-bottom: 35px;
-}
-
-.comment-form-cookies-consent input {
-    float: left;
-}
-
-.comment-form-cookies-consent:after {
-    content: "";
-    display: block;
-    clear: both;
-}
-
-
-/* ===================================
-    6. Contact Page CSS
-====================================== */
-
-.wpcf7-form {
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.wpcf7-form input[type=text], 
-.wpcf7-form input[type=email], 
-.wpcf7-form textarea {
+.contact-form input[type=text], 
+.contact-form input[type=email], 
+.contact-form textarea {
     border: 0;
     border-bottom: 2px solid #333333;
     padding-top: 13px;
@@ -1234,21 +967,21 @@ a.comment-reply-link {
     width: 100%;
     line-height: 25px;
     background-color: transparent;
-    color: #acacac;
+    color: #808080;
 }
 
-.wpcf7-form input[name="your-name"] {
+.contact-form input[name="your-name"] {
     margin-top: 0;
     padding-top: 0;
 }
 
-.wpcf7-form textarea {
+.contact-form textarea {
     height: 150px;
 }
 
-.wpcf7-form input[type=submit] {
+.contact-form input[type=submit] {
     display: inline-block;
-    border: 2px solid transparent;
+    border: 2px solid;
     text-align: center;
     padding: 20px 0px;
     font-size: 14px;
@@ -1257,7 +990,7 @@ a.comment-reply-link {
     vertical-align: middle;
     text-decoration: none;
     background-color: #1a1a1a;
-    color: #acacac;
+    color: #808080;
     font-family: 'Work Sans', sans-serif;
     font-weight: 700;
     width: 100%;
@@ -1266,292 +999,82 @@ a.comment-reply-link {
     cursor: pointer;
 }
 
-.wpcf7-form input[type=submit]:hover {
+.contact-form input[type=submit]:hover {
     opacity: 0.8;
 }
 
-.wpcf7-form input[type=text]::-webkit-input-placeholder, 
-.wpcf7-form input[type=email]::-webkit-input-placeholder, 
-.wpcf7-form textarea::-webkit-input-placeholder {
+.contact-form input[type=text]::-webkit-input-placeholder, 
+.contact-form input[type=email]::-webkit-input-placeholder, 
+.contact-form textarea::-webkit-input-placeholder {
     font-family: 'Work Sans', sans-serif;
-    color: #acacac;
+    color: #808080;
     font-weight: 400;
     font-size: 14px;
     line-height: 25px;    
     opacity: 1;  
 }
 
-.wpcf7-form input[type=text]:-ms-input-placeholder, 
-.wpcf7-form input[type=email]:-ms-input-placeholder, 
-.wpcf7-form textarea:-ms-input-placeholder {
+.contact-form input[type=text]:-ms-input-placeholder, 
+.contact-form input[type=email]:-ms-input-placeholder, 
+.contact-form textarea:-ms-input-placeholder {
     font-family: 'Work Sans', sans-serif;
-    color: #acacac;
+    color: #808080;
     font-weight: 400;
     font-size: 14px;
     line-height: 25px;    
     opacity: 1;  
 }
 
-.wpcf7-form input[type=text]::placeholder, 
-.wpcf7-form input[type=email]::placeholder, 
-.wpcf7-form textarea::placeholder {
+.contact-form input[type=text]::placeholder, 
+.contact-form input[type=email]::placeholder, 
+.contact-form textarea::placeholder {
     font-family: 'Work Sans', sans-serif;
-    color: #acacac;
+    color: #808080;
     font-weight: 400;
     font-size: 14px;
     line-height: 25px;
     opacity: 1;    
 }
 
-span.wpcf7-not-valid-tip {
-    font-size: 12px;
-}    
-
-div.wpcf7-response-output {
-    margin: 0;
-    padding: 0.2em 1em;
-    font-size: 12px;    
-    text-align: center;
-    border: 2px solid;
-}
-
-span.wpcf7-list-item {
-    margin: 0;
-}
-
-div.wpcf7 .ajax-loader {
-    display: none !important;
-}
-
 
 /* ===================================
-    7. Archive CSS / Search CSS / 404 Page CSS / Attachment Page
+    10. Footer CSS
 ====================================== */
 
-.archive .navigation.pagination, 
-.search .navigation.pagination {
-    text-align: center;
-}
-
-.archive .blog-holder, 
-.search .blog-holder {
-    margin-top: 70px;
-}
-
-.archive .blog-holder > article, 
-.search .blog-holder > article {
-    margin-bottom: 70px;
-}
-
-.archive-title {
-    text-align: center;
-    margin-bottom: 90px;
-}
-
-.archive-title h1 {
-    font-family: 'Unna', serif;
-    font-weight: 700;
-    font-size: 26px;
-    line-height: 32px;
-    display: inline-block;
-    padding-top: 0;
-    padding-bottom: 0;
-    border-bottom: 5px solid;
-}
-
-.search-no-results h2 {
-    text-align: center;
-}
-
-.error-text-help-first {
-    font-size: 36px;
-    line-height: 40px;
-    margin-top: 95px;
-}
-
-.error-text-help-second {
-    font-size: 26px;
-    line-height: 34px;
-    max-width: 460px;
-    margin: 0 auto;
-}
-
-.error-text-404 {
-    font-family: 'Unna', serif;
-    font-weight: 700;
-    font-size: 350px;
-    color: #8e8e8e;
-    line-height: 100%;
-}
-
-.error-text-home a {
-    color: #acacac;
-}
-
-
-/* ===================================
-    8. Footer CSS
-====================================== */
-
-.footer {    
-    margin-top: 150px;
+footer {
+    width: calc(100% - 165px);
     margin-left: 165px;
 }
 
-
-/* ===================================
-    9. Footer Widgets CSS
-====================================== */
-
-#sidebar {
-    font-size: 12px;
-    line-height: 17px;
-    margin-bottom: 50px;
+.footer-content {
+    color: #6f6f6f;
+    margin-top: 150px;
 }
 
-#sidebar p {
-    margin-bottom: 12px;
+.footer-content a {
+    color: #acacac;
 }
 
-#sidebar .widget li {
-    margin-bottom: 12px;
-}
-
-#sidebar table, 
-#sidebar th, 
-#sidebar td {
-    padding: 5px;
-}
-
-select {
-    max-width: 100%;
-    background-color: black;
+.footer-content a:hover {
     color: #fff;
-    border: 0;
 }
 
-ul#footer-sidebar li.widget {
-    width: calc(80% / 3);
-    margin-right: 10%;
-    float: left;
-    margin-bottom: 50px;
-    text-align: left;
+.footer-logo img {
+    width: 135px;
+    height: 135px;
+    margin: 0 auto 55px;
+    display: block;
 }
 
-ul#footer-sidebar li.widget:nth-child(3n) {
-    margin-right: 0;
-}
-
-ul#footer-sidebar li.widget:nth-child(3n+1) {
-    clear: left;
-}
-
-ul#footer-sidebar li.widget a {
-    border-bottom: 1px solid;
-}
-
-ul#footer-sidebar:after {
-    clear: both;
-    content: "";
-    display: table;
-}
-
-#sidebar ul {
-    padding-left: 0;
-    margin: 0;
-    list-style: none;
-    margin-top: 0;
-}
-
-#sidebar ul.children,
-#sidebar ul.sub-menu {
-    margin-top: 10px;
-    margin-left: 10px;
-}
-
-#sidebar .tagcloud a {
-    line-height: 120%;
-}
-
-h4.widgettitle {
-    font-size: 13px;
-    text-transform: uppercase;
-    padding-top: 0;
-}
-
-#sidebar li.widget {
-    margin-bottom: 50px;
-    overflow: hidden;
-}
-
-#sidebar .footer-social a {
-    font-size: 19px;
-    color: #fff;
-    margin-left: 84px;
-}
-
-#sidebar .footer-social a:first-child {
-    margin-left: 0;
-}
-
-.search-field {
-    font-family: 'Work Sans', sans-serif;       
-    color: #fff;
-    padding: 0;
-    margin-top: -3px;
-    font-size: 13px;
-    line-height: 110%;
-    font-weight: 400;
-    background-color: transparent;
-    border: none;
-    border-bottom: 2px solid transparent;
-    text-align: left;
-    transition: border 0.4s ease;
-    -webkit-appearance: none;
-}
-
-.search-field:focus {
-    border-bottom: 2px solid #FFF;
-}
-
-.search-field::-webkit-input-placeholder {
-    font-family: 'Work Sans', sans-serif;
-    color: #ffffff;
-    padding: 5px 0;
-    font-size: 13px;
-    line-height: 110%;
-    font-weight: 400;
-    opacity: 1;
-    text-align: left;
-}
-
-.search-field:-ms-input-placeholder {
-    font-family: 'Work Sans', sans-serif;
-    color: #ffffff;
-    padding: 5px 0;
-    font-size: 13px;
-    line-height: 110%;
-    font-weight: 400;
-    opacity: 1;
-    text-align: left;
-}
-
-.search-field::placeholder {
-    font-family: 'Work Sans', sans-serif;
-    color: #ffffff;
-    padding: 5px 0;
-    font-size: 13px;
-    line-height: 110%;
-    font-weight: 400;
-    opacity: 1;
-    text-align: left;
+.copyright-holder {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 
 /* ===================================
-    10. Responsive CSS
+    11. Responsive CSS
 ====================================== */
-
 
 @media screen and (max-width: 1366px) {
 
@@ -1592,12 +1115,8 @@ h4.widgettitle {
 
 @media screen and (max-width: 1020px) {   
 
-    .admin-bar .menu-holder-front {
-        top: 32px;
-    }
-
     .site-content,
-    .footer {        
+    footer {        
         padding: 0;
         width: 100%;
         margin-left: auto;
@@ -1639,7 +1158,7 @@ h4.widgettitle {
     .menu-wrapper-back {
         padding-top: 100px;
         padding-left: 10%;
-    }        
+    }    
 
     .blog-item-holder .entry-holder {
         opacity: 1;
@@ -1650,42 +1169,27 @@ h4.widgettitle {
         display: block;
     }
 
-    .more-posts-index-holder {
-        margin-top: 40px;
+    .one_half, 
+    .one_third, 
+    .one_fourth, 
+    .two_third, 
+    .three_fourth {
+        width: 100% !important;
+        float: none;
+        margin-right: 0;
+        margin-left: 0;
     }
 
-    .alignfull, 
-    .alignwide {
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        transform: none;
-    }   
-
-    .single .nav-links {
-        margin: 50px 0;
-    }    
-
-    .footer {
+    .contact-form {
         margin-top: 50px;
     }
 
-    .comments-holder .pingback {
-        padding-bottom: 30px;
-    }
-}
-
-@media screen and (max-width: 782px) {
-    
-    .admin-bar.open .toggle-holder {
-         top: 46px;
-    }
-
-    html.open {
-        margin-top: 0 !important;
+    .footer-content {
+        margin-top: 75px;
     }
 
 }
+
 
 @media screen and (max-width: 767px) {
 
@@ -1725,13 +1229,18 @@ h4.widgettitle {
         margin-bottom: 40px;
     }
 
-    .blog-holder > article {
+    .grid-item, 
+    .grid-sizer {
+        width: 100% !important;
+        float: none;
+        border: 0;
         margin-bottom: 20px;
     }      
 
-    .blog-item-holder.has-post-thumbnail img {
-        margin-bottom: 0;
-    }  
+    .blog-item-holder h2.entry-title {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
 
     .blog-item-holder .entry-info {
         display: none;
@@ -1741,17 +1250,8 @@ h4.widgettitle {
     .blog-item-holder h2.entry-title, 
     h1.entry-title.page-title {
         font-size: 34px;
-        margin-bottom: 35px !important;
+        margin-bottom: 35px;
     }   
-
-    .blog-item-holder.has-post-thumbnail h2.entry-title {
-        margin-bottom: 15px !important;
-    }
-
-    .blog-item-holder h2.entry-title {
-        max-width: 100%;        
-        margin-bottom: 0 !important;
-    }
 
     .page-featured-image {
         margin-bottom: 40px;
@@ -1762,60 +1262,6 @@ h4.widgettitle {
         line-height: 130%;
         margin-top: 0;
     }
-
-    .error-text-404 {
-        font-size: 90px;
-    }
-
-    .single .nav-links:before {
-        display: none;
-    }    
-
-    .single .nav-previous, 
-    .single .nav-next {
-        display: block;
-        width: 95%;
-        text-align: center;
-        float: none;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .single .nav-previous a, 
-    .single .nav-next a {
-        float: none;
-    }
-
-    .single .nav-previous {    
-        padding-bottom: 40px;
-    }
-
-    .comment-form-holder {
-        padding-top: 0;
-    }
-
-    .comment {
-        padding-bottom: 50px;
-    }
-
-    .replay-at-author {
-        font-size: 14px;       
-    }
-
-    .comment-text p {
-        font-size: 14px;
-        line-height: 180%;
-    }
-
-    ul#footer-sidebar li.widget {
-        float: none;
-        width: 100%;
-    }
-
-    ul#footer-sidebar li.widget:last-child {
-        margin-bottom: 0;
-    }
-
 
 }
 
@@ -1839,31 +1285,6 @@ h4.widgettitle {
         display: block;
         line-height: 130%;
         margin: 20px 0;
-    }    
-
-    blockquote p {
-        margin-left: 0;
-        max-width: 100%;
-        display: block !important;
-    }  
-
-    blockquote.wp-block-quote {
-        font-size: 25px;
-        line-height: 35px;
-        padding-left: 10px;
-    }
-
-    .comment-date {
-        font-size: 13px;
-        margin-top: -15px;
-    }      
-
-    .comments-list-holder .children > li {
-        padding-left: 0.75em;
-    }
-
-    .comments-holder ul.children:before {
-        left: 2.75em;
     }
 
 }
